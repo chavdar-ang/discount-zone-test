@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('role_id')->default(2);
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -22,6 +23,14 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            [
+                'name' => 'Chavdar Angelov',
+                'email' => 'chavdar84@gmail.com',
+                'password' => '$2y$10$9mn/WnL6b5eWgeZbhSL71uDP.jRIpCxNhjg9L82.jGBoBYHHMTZn2' // 123456
+            ]
+        ]);
     }
 
     /**

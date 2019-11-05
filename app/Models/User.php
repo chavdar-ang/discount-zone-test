@@ -34,6 +34,15 @@ class User extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function partners()
+    {
+        return $this->hasMany(Partner::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

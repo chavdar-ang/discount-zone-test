@@ -29,7 +29,20 @@ class UserCrudController extends CrudController
     protected function setupListOperation()
     {
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
-        $this->crud->setFromDb();
+        // $this->crud->setFromDb();
+        $this->crud->setColumns(['name', 'email']);
+        
+        $this->crud->addColumn(
+            [
+                // 1-n relationship
+                'label' => "Role", // Table column heading
+                'type' => "select",
+                'name' => 'role_id', // the column that contains the ID of that connected entity;
+                'entity' => 'role', // the method that defines the relationship in your Model
+                'attribute' => "name", // foreign key attribute that is shown to user
+                'model' => "App\Models\Role", // foreign key model
+            ]
+        );
     }
 
     protected function setupCreateOperation()
@@ -37,7 +50,34 @@ class UserCrudController extends CrudController
         $this->crud->setValidation(UserRequest::class);
 
         // TODO: remove setFromDb() and manually define Fields
-        $this->crud->setFromDb();
+        // $this->crud->setFromDb();
+
+        $this->crud->addField([
+            'name' => 'name',
+            'type' => 'text',
+            'label' => "Name"
+        ]);
+
+        $this->crud->addField([
+            'name' => 'email',
+            'type' => 'text',
+            'label' => "E-mail"
+        ]);
+
+        $this->crud->addField([
+            'name' => 'password',
+            'label' => 'Password',
+            'type' => 'password'
+        ]);
+
+        $this->crud->addField([  // Select
+            'label' => "Role",
+            'type' => 'select',
+            'name' => 'role_id', // the db column for the foreign key
+            'entity' => 'role', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'model' => "App\Models\Role",
+        ]);
     }
 
     protected function setupUpdateOperation()

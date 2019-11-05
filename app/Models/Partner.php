@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Partner extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class Tag extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'tags';
+    protected $table = 'partners';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -34,6 +34,11 @@ class Tag extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 
     /*
     |--------------------------------------------------------------------------
