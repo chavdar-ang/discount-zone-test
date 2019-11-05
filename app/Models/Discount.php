@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Partner extends Model
+class Discount extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class Partner extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'partners';
+    protected $table = 'discounts';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -34,16 +34,6 @@ class Partner extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
-    }
-
-    public function discounts()
-    {
-        return $this->belongsToMany(Discount::class);
-    }
 
     /*
     |--------------------------------------------------------------------------

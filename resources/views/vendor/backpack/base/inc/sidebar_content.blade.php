@@ -4,3 +4,4 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('role') }}'><i class='nav-icon fa fa-question'></i> Roles</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon fa fa-question'></i> Users</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('partner') }}'><i class='nav-icon fa fa-question'></i> Partners</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('discount') }}'><i class='nav-icon fa fa-question'></i> Discounts</a></li>

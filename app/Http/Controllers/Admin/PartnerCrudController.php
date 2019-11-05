@@ -70,6 +70,22 @@ class PartnerCrudController extends CrudController
                 return $query->where('role_id', 2)->get();
             }), // force the related options to be a custom query, instead of all(); you can use this to filter the results show in the select
         ]);
+
+        $this->crud->addField([    // Select2Multiple = n-n relationship (with pivot table)
+            'label'     => "Discount Categories",
+            'type'      => 'select2_multiple',
+            'name'      => 'discounts', // the method that defines the relationship in your Model
+            'entity'    => 'discounts', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'model'     => "App\Models\Discount", // foreign key model
+            'pivot'     => true, // on create&update, do you need to add/delete pivot table entries?
+
+            // optional
+            // 'options'   => (function ($query) {
+            //     return $query->where('role_id', 2)->get();
+            // }),
+            // force the related options to be a custom query, instead of all(); you can use this to filter the results show in the select
+        ]);
     }
 
     protected function setupUpdateOperation()

@@ -41,7 +41,7 @@ class User extends Model
 
     public function partners()
     {
-        return $this->hasMany(Partner::class);
+        return $this->belongsToMany(Partner::class);
     }
 
     /*
