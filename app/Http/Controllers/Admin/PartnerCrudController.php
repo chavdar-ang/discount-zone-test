@@ -71,18 +71,28 @@ class PartnerCrudController extends CrudController
             }), // force the related options to be a custom query, instead of all(); you can use this to filter the results show in the select
         ]);
 
-        $this->crud->addField([   // Table
-            'label' => 'Discount Categories',
-            'type' => 'discount_partner',
-            'name' => 'discounts',
-            'entity_singular' => 'discount', // used on the "Add X" button
+        $this->crud->addField([    // Select2Multiple = n-n relationship (with pivot table)
+            'label'     => "Discount Categories",
+            'type'      => 'discount_categories',
+            'name'      => 'discounts', // the method that defines the relationship in your Model
+            'entity'    => 'discounts', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'model'     => "App\Models\Discount", // foreign key model
+            'pivot'     => true, // on create&update, do you need to add/delete pivot table entries?
+            // 'select_all' => true, // show Select All and Clear buttons?
             'columns' => [
                 'name' => 'Name',
-                'slug' => 'Slug',
+                'percent' => 'Percent %',
             ],
             'max' => 5, // maximum rows allowed in the table
-            'min' => 0, // minimum rows allowed in the table
-        ]);
+            'min' => 0,
+
+            // optional
+            // 'options'   => (function ($query) {
+            //     return $query->orderBy('name', 'ASC')->where('depth', 1)->get();
+            // }),
+            // force the related options to be a custom query, instead of all(); you can use this to filter the results show in the select
+       ]);
     }
 
     protected function setupUpdateOperation()

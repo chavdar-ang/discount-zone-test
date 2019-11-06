@@ -36,6 +36,7 @@ class CreatePartnersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('discount_id');
             $table->unsignedBigInteger('partner_id');
+            $table->decimal('percentage', 5, 2)->nullable();
             $table->timestamps();
 
             $table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade');
